@@ -5,9 +5,10 @@ import HeroImage from "@/assets/images/hero-bg.png";
 
 const Index: FC = () => {
   return (
-    <div
+    <section
+      id="hero"
       className={cn(
-        "relative h-screen w-full [clipPath: 'inset(0 0 0 0)'] -z-10"
+        "relative h-screen w-full [clipPath: 'inset(0 0 0 0)'] -z-10 snap-start"
       )}
     >
       <div className={cn("fixed h-full w-full top-0 left-0")}>
@@ -32,7 +33,7 @@ const Index: FC = () => {
           Better building starts with Buildnoon.
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

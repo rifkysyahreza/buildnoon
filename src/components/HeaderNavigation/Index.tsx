@@ -9,22 +9,47 @@ import { cn } from "@/lib/utils"; // Adjust the import path as necessary
 const HeaderNavigation: FC = () => {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+  const [inView, setInView] = useState<string>("hero");
   const navRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+    const sections = document.querySelectorAll("section.snap-start");
+    const options = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.5,
     };
 
-    window.addEventListener("scroll", handleScroll);
+    // Intersection Observer to detect which section is in view
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // console.log(`${entry.target.id} is in view`);
+          setInView(entry.target.id);
+          console.log(`in view: ${inView}`);
+        }
+      });
+    }, options);
+
+    // Set scroll state based on which section is in view
+    if (inView === "hero") {
+      setIsScrolled(false);
+    } else {
+      setIsScrolled(true);
+    }
+
+    // Observe each section
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+
+    // Cleanup observer on component unmount
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      sections.forEach((section) => {
+        observer.unobserve(section);
+      });
     };
-  }, []);
+  }, [inView]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
