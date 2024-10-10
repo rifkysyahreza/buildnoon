@@ -2,13 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 
 interface IUiState {
   isScrolled: boolean;
-  isMobileMenuOpen: boolean;
+  isSideMenuOpen: boolean;
   inView: string;
 }
 
 const initialState: IUiState = {
   isScrolled: false,
-  isMobileMenuOpen: false,
+  isSideMenuOpen: false,
   inView: "hero",
 };
 
@@ -19,8 +19,8 @@ const uiNavigationSlice = createSlice({
     setIsScrolled: (state, action) => {
       state.isScrolled = action.payload;
     },
-    setIsMobileMenuOpen: (state, action) => {
-      state.isMobileMenuOpen = action.payload;
+    setIsSideMenuOpen: (state, action) => {
+      state.isSideMenuOpen = action.payload;
     },
     setInView: (state, action) => {
       state.inView = action.payload;
@@ -28,6 +28,6 @@ const uiNavigationSlice = createSlice({
   },
 });
 
-export const { setIsScrolled, setIsMobileMenuOpen, setInView } =
+export const { setIsScrolled, setIsSideMenuOpen, setInView } =
   uiNavigationSlice.actions;
 export default uiNavigationSlice.reducer;

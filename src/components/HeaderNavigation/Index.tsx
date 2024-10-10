@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { useAppDispatch, useAppSelector } from "@/hooks/useSelector";
 import {
   setIsScrolled,
-  setIsMobileMenuOpen,
+  setIsSideMenuOpen,
   setInView,
 } from "@/lib/features/ui/uiNavigationSlice";
 
@@ -16,8 +16,8 @@ const HeaderNavigation: FC = () => {
   const dispatch = useAppDispatch();
 
   const isScrolled = useAppSelector((state) => state.uiNavigation.isScrolled);
-  const isMobileMenuOpen = useAppSelector(
-    (state) => state.uiNavigation.isMobileMenuOpen
+  const isSideMenuOpen = useAppSelector(
+    (state) => state.uiNavigation.isSideMenuOpen
   );
   const inView = useAppSelector((state) => state.uiNavigation.inView);
   const navRef = useRef<HTMLUListElement>(null);
@@ -40,7 +40,7 @@ const HeaderNavigation: FC = () => {
           dispatch(setInView(entry.target.id));
           // console.log(`in view: ${inView}`);
           // console.log(`is scrolled: ${isScrolled}`);
-          // console.log(`is mobile menu open: ${isMobileMenuOpen}`);
+          // console.log(`is mobile menu open: ${isSideMenuOpen}`);
         }
       });
     }, options);
@@ -63,20 +63,20 @@ const HeaderNavigation: FC = () => {
         observer.unobserve(section);
       });
     };
-  }, [dispatch, inView, isScrolled, isMobileMenuOpen]);
+  }, [dispatch, inView, isScrolled, isSideMenuOpen]);
 
   useEffect(() => {
-    dispatch(setIsMobileMenuOpen(false));
+    dispatch(setIsSideMenuOpen(false));
   }, [dispatch, isScrolled]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (navRef.current && !navRef.current.contains(event.target as Node)) {
-        dispatch(setIsMobileMenuOpen(false));
+        dispatch(setIsSideMenuOpen(false));
       }
     };
 
-    if (isMobileMenuOpen) {
+    if (isSideMenuOpen) {
       document.addEventListener("mousedown", handleClickOutside);
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -85,10 +85,10 @@ const HeaderNavigation: FC = () => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [dispatch, isMobileMenuOpen]);
+  }, [dispatch, isSideMenuOpen]);
 
-  const toggleMobileMenu = () => {
-    dispatch(setIsMobileMenuOpen(!isMobileMenuOpen));
+  const toggleSideMenu = () => {
+    dispatch(setIsSideMenuOpen(!isSideMenuOpen));
   };
 
   return (
@@ -106,8 +106,10 @@ const HeaderNavigation: FC = () => {
         <div className="font-bold md:hidden">Buildnoon</div>
         <div className="md:hidden">
           <button
-            onClick={toggleMobileMenu}
-            className="text-3xl focus:outline-none"
+            onClick={toggleSideMenu}
+            className={cn("text-3xl focus:outline-none", {
+              "opacity-0": isSideMenuOpen,
+            })}
           >
             &#9776;
           </button>
@@ -116,10 +118,9 @@ const HeaderNavigation: FC = () => {
         <ul
           ref={navRef}
           className={cn(
-            "fixed top-0 right-0 h-screen md:h-full bg-white shadow-md md:shadow-none md:bg-transparent transition-transform transform z-20",
+            "fixed top-0 right-0 h-screen md:h-full bg-white shadow-md md:shadow-none md:bg-transparent z-20 opacity-0",
             {
-              "translate-x-0 pt-4 absolute": isMobileMenuOpen,
-              "translate-x-full opacity-0": !isMobileMenuOpen,
+              "translate-x-full opacity-0": !isSideMenuOpen,
               "md:relative md:flex md:space-x-4 md:translate-x-0 md:ml-auto md:opacity-100":
                 true,
             }
