@@ -49,7 +49,10 @@ const TestimonialCarousel: FC = () => {
 
   return (
     <div>
-      <Carousel className="w-full md:w-screen max-w-xs md:max-w-4xl">
+      <Carousel
+        opts={{ loop: true }}
+        className="w-full md:w-screen max-w-xs md:max-w-4xl"
+      >
         <CarouselContent>
           {TESTIMONIALS.map(
             ({ image, username, rating, date, review }, index) => (
