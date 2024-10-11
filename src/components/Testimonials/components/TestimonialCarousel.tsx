@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
@@ -14,16 +14,31 @@ import Image from "next/image";
 import { StarIcon } from "@heroicons/react/24/solid";
 import { Button } from "@/components/ui/button";
 import ReviewDialog from "./ReviewDialog";
+import { useAppDispatch, useAppSelector } from "@/hooks/useSelector";
+import { setIsReviewDialogOpen } from "@/lib/features/ui/uiNavigationSlice";
 
 const TestimonialCarousel: FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedReview, setSelectedReview] = useState<string | null>(null);
+  const dispatch = useAppDispatch();
 
+  const isReviewDialogOpen = useAppSelector(
+    (state) => state.uiNavigation.isReviewDialogOpen
+  );
+
+  // Close review dialog when user clicks outside
+  useEffect(() => {
+    document.body.addEventListener("click", () => {
+      dispatch(setIsReviewDialogOpen(false));
+    });
+  }, [dispatch]);
+
+  // Open full review
   const handleSeeMore = (review: string) => {
     setSelectedReview(review);
-    setIsModalOpen(true);
+    dispatch(setIsReviewDialogOpen(true));
   };
 
+  // Truncate 20 words of review
   const truncateReview = (review: string) => {
     const words = review.split(" ");
     if (words.length > 20) {
@@ -85,7 +100,8 @@ const TestimonialCarousel: FC = () => {
         <CarouselNext />
       </Carousel>
 
-      {isModalOpen && <ReviewDialog review={selectedReview} />}
+      {/* Open full review */}
+      {isReviewDialogOpen && <ReviewDialog review={selectedReview} />}
     </div>
   );
 };

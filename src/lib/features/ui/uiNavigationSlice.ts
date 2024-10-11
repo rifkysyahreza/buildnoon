@@ -24,12 +24,19 @@ const uiNavigationSlice = createSlice({
     setIsSideMenuOpen: (state, action) => {
       state.isSideMenuOpen = action.payload;
     },
+    setIsReviewDialogOpen: (state, action) => {
+      state.isReviewDialogOpen = action.payload;
+    },
     setInView: (state, action) => {
       state.inView = action.payload;
     },
   },
 });
 
-export const { setIsScrolled, setIsSideMenuOpen, setInView } =
-  uiNavigationSlice.actions;
+export const {
+  setIsScrolled,
+  setIsSideMenuOpen,
+  setIsReviewDialogOpen,
+  setInView,
+} = uiNavigationSlice.actions;
 export default uiNavigationSlice.reducer;
