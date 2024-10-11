@@ -65,10 +65,12 @@ const HeaderNavigation: FC = () => {
     };
   }, [dispatch, inView, isScrolled, isSideMenuOpen]);
 
+  // Close side menu when user scrolls
   useEffect(() => {
     dispatch(setIsSideMenuOpen(false));
   }, [dispatch, isScrolled]);
 
+  // Close side menu when user clicks outside of the menu
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (navRef.current && !navRef.current.contains(event.target as Node)) {
@@ -87,8 +89,9 @@ const HeaderNavigation: FC = () => {
     };
   }, [dispatch, isSideMenuOpen]);
 
+  // Toggle side menu
   const toggleSideMenu = () => {
-    dispatch(setIsSideMenuOpen(!isSideMenuOpen));
+    dispatch(setIsSideMenuOpen(true));
   };
 
   return (
@@ -139,7 +142,7 @@ const HeaderNavigation: FC = () => {
               className="hover:text-blue-500 hover:border-b-2 hover:border-red-500"
               href="#about"
             >
-              About
+              About Us
             </Link>
           </li>
           <li className="p-4 md:p-0">
@@ -155,7 +158,7 @@ const HeaderNavigation: FC = () => {
               className="hover:text-blue-500 hover:border-b-2 hover:border-red-500"
               href="#contact"
             >
-              Contact
+              Teams
             </Link>
           </li>
         </ul>

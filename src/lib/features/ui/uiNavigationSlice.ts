@@ -3,12 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 interface IUiState {
   isScrolled: boolean;
   isSideMenuOpen: boolean;
+  isReviewDialogOpen: boolean;
   inView: string;
 }
 
 const initialState: IUiState = {
   isScrolled: false,
   isSideMenuOpen: false,
+  isReviewDialogOpen: false,
   inView: "hero",
 };
 

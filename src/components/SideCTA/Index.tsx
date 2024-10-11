@@ -15,7 +15,7 @@ const Index: FC = () => {
   );
 
   const handleShowSideNavigation = () => {
-    dispatch(setIsSideMenuOpen(!isSideMenuOpen));
+    dispatch(setIsSideMenuOpen(true));
   };
 
   return (
