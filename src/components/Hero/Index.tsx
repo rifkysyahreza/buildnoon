@@ -1,9 +1,15 @@
+"use client";
+
 import Image from "next/image";
 import { FC } from "react";
 import { cn } from "@/lib/utils";
 import HeroImage from "@/assets/images/hero-bg.png";
+import TestimonialBG from "@/assets/images/testimonials-bg.jpeg";
+import { useAppSelector } from "@/hooks/useSelector";
 
 const Index: FC = () => {
+  const inView = useAppSelector((state) => state.uiNavigation.inView);
+
   return (
     <section
       id="hero"
@@ -13,7 +19,9 @@ const Index: FC = () => {
     >
       <div className={cn("fixed h-full w-full top-0 left-0")}>
         <Image
-          src={HeroImage}
+          src={
+            inView === "hero" || inView === "about" ? HeroImage : TestimonialBG
+          }
           alt="Hero Image"
           className="object-cover w-screen h-screen"
         />
