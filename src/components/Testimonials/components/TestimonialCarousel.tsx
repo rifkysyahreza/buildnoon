@@ -57,19 +57,18 @@ const TestimonialCarousel: FC = () => {
                 <div className="p-1">
                   <Card>
                     <CardContent className="flex aspect-[9/16] items-center justify-center p-6">
-                      <div className="flex flex-col items-center justify-center gap-2">
+                      <div className="flex flex-col items-center justify-between gap-2">
                         <div className="text-2xl">{username}</div>
 
                         <Image
                           src={image}
                           alt={username}
-                          width={80}
-                          height={80}
-                          className=" rounded-full"
+                          width={1000}
+                          height={100}
+                          className=" rounded-lg"
                         />
 
                         <div className="text-white text-center">
-                          <div className="font-bold">{username}</div>
                           <div className="text-sm text-black">{date}</div>
                           <div className="flex items-center justify-center gap-1">
                             {[...Array(rating)].map((_, index) => (
@@ -80,8 +79,8 @@ const TestimonialCarousel: FC = () => {
                             ))}
                           </div>
                         </div>
-                        <div className="flex flex-col gap-8 text-black text-center font-semibold">
-                          {truncateReview(review)}
+                        <div className="flex flex-col gap-8 text-black text-center font-semibold grow-0">
+                          <div className="h-36">{truncateReview(review)}</div>
                           {review.split(" ").length > 20 && (
                             <Button onClick={() => handleSeeMore(review)}>
                               See Full Review
