@@ -7,10 +7,10 @@ const Index: FC = () => {
   return (
     <section
       id="testimonials"
-      className={cn("relative h-screen w-full snap-start")}
+      className={cn("relative h-screen w-full snap-start p-[5%]")}
     >
       <div className="flex flex-col items-center justify-center gap-10">
-        <div className={cn("text-white pt-20")}>
+        <div className={cn("text-white")}>
           <div
             className={cn(
               "font-bold text-5xl md:text-6xl md:text-center md:pb-9"

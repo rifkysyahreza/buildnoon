@@ -70,25 +70,6 @@ const HeaderNavigation: FC = () => {
     dispatch(setIsSideMenuOpen(false));
   }, [dispatch, isScrolled]);
 
-  // Close side menu when user clicks outside of the menu
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (navRef.current && !navRef.current.contains(event.target as Node)) {
-        dispatch(setIsSideMenuOpen(false));
-      }
-    };
-
-    if (isSideMenuOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [dispatch, isSideMenuOpen]);
-
   // Toggle side menu
   const toggleSideMenu = () => {
     dispatch(setIsSideMenuOpen(true));
@@ -132,7 +113,7 @@ const HeaderNavigation: FC = () => {
           <li className="p-4 md:p-0">
             <Link
               className="hover:text-blue-500 hover:border-b-2 hover:border-red-500"
-              href="#home"
+              href="/"
             >
               Home
             </Link>
@@ -140,7 +121,7 @@ const HeaderNavigation: FC = () => {
           <li className="p-4 md:p-0">
             <Link
               className="hover:text-blue-500 hover:border-b-2 hover:border-red-500"
-              href="#about"
+              href="/about-us"
             >
               About Us
             </Link>
