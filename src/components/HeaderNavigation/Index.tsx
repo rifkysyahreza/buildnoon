@@ -23,14 +23,14 @@ const HeaderNavigation: FC = () => {
   const navRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
-    // Get all sections with the class "snap-start"
-    const sections = document.querySelectorAll("section.snap-start");
+    // Get all sections with the class "section-start"
+    const sections = document.querySelectorAll("section.section-start");
 
     // Options for the Intersection
     const options = {
       root: null,
       rootMargin: "0px",
-      threshold: 0.4,
+      threshold: 0.5,
     };
 
     // Intersection Observer to detect which section is in view
@@ -38,9 +38,9 @@ const HeaderNavigation: FC = () => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           dispatch(setInView(entry.target.id));
-          // console.log(`in view: ${inView}`);
-          // console.log(`is scrolled: ${isScrolled}`);
-          // console.log(`is mobile menu open: ${isSideMenuOpen}`);
+          console.log(`in view: ${inView}`);
+          console.log(`is scrolled: ${isScrolled}`);
+          console.log(`is mobile menu open: ${isSideMenuOpen}`);
         }
       });
     }, options);
@@ -129,7 +129,7 @@ const HeaderNavigation: FC = () => {
           <li className="p-4 md:p-0">
             <Link
               className="hover:text-blue-500 hover:border-b-2 hover:border-red-500"
-              href="#services"
+              href="/services"
             >
               Services
             </Link>
@@ -137,7 +137,7 @@ const HeaderNavigation: FC = () => {
           <li className="p-4 md:p-0">
             <Link
               className="hover:text-blue-500 hover:border-b-2 hover:border-red-500"
-              href="#contact"
+              href="/teams"
             >
               Teams
             </Link>

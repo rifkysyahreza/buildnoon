@@ -1,7 +1,7 @@
 import HeaderNavigation from "@/components/HeaderNavigation/Index";
-import Hero from "@/components/Hero/Index";
-import About from "@/components/About/Index";
-import Testimonials from "@/components/Testimonials/Index";
+import Hero from "@/components/Home/Hero/Index";
+import About from "@/components/Home/About/Index";
+import Testimonials from "@/components/Home/Testimonials/Index";
 import SideCTA from "@/components/SideCTA/Index";
 
 export default function Home() {
