@@ -5,6 +5,7 @@ interface IUiState {
   isSideMenuOpen: boolean;
   isReviewDialogOpen: boolean;
   inView: string;
+  windowHeight: number;
 }
 
 const initialState: IUiState = {
@@ -12,6 +13,7 @@ const initialState: IUiState = {
   isSideMenuOpen: false,
   isReviewDialogOpen: false,
   inView: "hero",
+  windowHeight: 0,
 };
 
 const uiNavigationSlice = createSlice({
@@ -30,6 +32,9 @@ const uiNavigationSlice = createSlice({
     setInView: (state, action) => {
       state.inView = action.payload;
     },
+    setWindowHeight: (state, action) => {
+      state.windowHeight = action.payload;
+    },
   },
 });
 
@@ -38,5 +43,6 @@ export const {
   setIsSideMenuOpen,
   setIsReviewDialogOpen,
   setInView,
+  setWindowHeight,
 } = uiNavigationSlice.actions;
 export default uiNavigationSlice.reducer;

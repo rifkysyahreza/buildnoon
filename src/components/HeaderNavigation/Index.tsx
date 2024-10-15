@@ -10,6 +10,7 @@ import {
   setIsScrolled,
   setIsSideMenuOpen,
   setInView,
+  setWindowHeight,
 } from "@/lib/features/ui/uiNavigationSlice";
 
 const HeaderNavigation: FC = () => {
@@ -21,6 +22,11 @@ const HeaderNavigation: FC = () => {
   );
   const inView = useAppSelector((state) => state.uiNavigation.inView);
   const navRef = useRef<HTMLUListElement>(null);
+
+  // Set window height on component mount
+  useEffect(() => {
+    dispatch(setWindowHeight(window.innerHeight));
+  }, [dispatch]);
 
   useEffect(() => {
     // Get all sections with the class "section-start"

@@ -1,9 +1,16 @@
+"use client";
+
 import React, { FC } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import AboutBG from "@/assets/images/abous-us-about.png";
+import { useAppSelector } from "@/hooks/useSelector";
 
 const Index: FC = () => {
+  const windowHeight = useAppSelector(
+    (state) => state.uiNavigation.windowHeight
+  );
+
   return (
     <section
       id="about"
@@ -29,7 +36,10 @@ const Index: FC = () => {
         </h1>
         <p
           className={cn(
-            "max-w-3xl text-base md:text-xl leading-relaxed text-justify backdrop-blur-md font-medium p-6 bg-opacity-50 bg-black rounded-lg"
+            "max-w-3xl text-lg md:text-xl leading-relaxed text-justify backdrop-blur-md font-medium p-6 bg-opacity-50 bg-black rounded-lg",
+            {
+              "text-sm": windowHeight < 800,
+            }
           )}
         >
           Welcome to Buildnoon, Indonesia’s premier construction company

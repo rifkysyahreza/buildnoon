@@ -2,6 +2,7 @@ import HeaderNavigation from "@/components/HeaderNavigation/Index";
 import SideCTA from "@/components/SideCTA/Index";
 import Hero from "@/components/AboutUs/Hero/Index";
 import About from "@/components/AboutUs/About/Index";
+import VisionMission from "@/components/AboutUs/VisionMission/Index";
 
 export default function AboutUs() {
   return (
@@ -11,6 +12,7 @@ export default function AboutUs() {
       <div className="snap-y snap-mandatory overflow-y-scroll h-screen no-scrollbar">
         <Hero></Hero>
         <About></About>
+        <VisionMission></VisionMission>
       </div>
     </div>
   );
