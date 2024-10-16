@@ -108,7 +108,7 @@ const HeaderNavigation: FC = () => {
         <ul
           ref={navRef}
           className={cn(
-            "fixed top-0 right-0 h-screen md:h-full bg-white shadow-md md:shadow-none md:bg-transparent z-20 opacity-0",
+            "fixed top-0 right-0 h-screen md:h-full bg-white text-white shadow-md md:shadow-none md:bg-transparent z-20 opacity-0",
             {
               "translate-x-full opacity-0": !isSideMenuOpen,
               "md:relative md:flex md:space-x-4 md:translate-x-0 md:ml-auto md:opacity-100":
