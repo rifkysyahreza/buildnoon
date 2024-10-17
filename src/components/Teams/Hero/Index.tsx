@@ -1,15 +1,9 @@
-"use client";
-
-import { useAppSelector } from "@/hooks/useSelector";
-import { cn } from "@/lib/utils";
-import { FC } from "react";
 import Image from "next/image";
-import HeroAboutImage from "@/assets/images/about-us-hero-bg.jpeg";
-import VisionMissionImage from "@/assets/images/vision-mission-bg.jpeg";
+import { FC } from "react";
+import { cn } from "@/lib/utils";
+import HeroImage from "@/assets/images/teams-hero-bg.jpeg";
 
 const Index: FC = () => {
-  const inView = useAppSelector((state) => state.uiNavigation.inView);
-
   return (
     <section
       id="hero"
@@ -19,11 +13,7 @@ const Index: FC = () => {
     >
       <div className={cn("fixed h-full w-full top-0 left-0")}>
         <Image
-          src={
-            inView === "hero" || inView === "about"
-              ? HeroAboutImage
-              : VisionMissionImage
-          }
+          src={HeroImage}
           alt="Hero Image"
           className="object-cover w-screen h-screen"
         />
@@ -39,12 +29,12 @@ const Index: FC = () => {
             "font-bold text-4xl md:text-7xl md:text-center md:pb-9"
           )}
         >
-          Know Us More, Strengthening Foundations, Elevating Lives
+          Engineered by Experts, Powered by Teamwork
         </div>
         <div
           className={cn("font-semibold text-xl hidden md:block md:text-center")}
         >
-          Better building starts with Buildnoon.
+          Who&apos;s behind Buildnoon?
         </div>
       </div>
     </section>
