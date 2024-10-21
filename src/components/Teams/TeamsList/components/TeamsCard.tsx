@@ -19,7 +19,7 @@ const TeamsCard = () => {
         return (
           <Card
             key={index}
-            className="max-w-[40vw] md:max-w-[10vw] grow-0 basis-full"
+            className="max-w-[40vw] md:max-w-[10vw] h-full grow-0 basis-full"
           >
             <CardContent>
               <div key={index} className="bg-white m-4">
@@ -29,7 +29,7 @@ const TeamsCard = () => {
                   width={1000}
                   height={1000}
                 ></Image>
-                <div>{first + " " + last}</div>
+                <div className="h-10">{first + " " + last}</div>
               </div>
             </CardContent>
           </Card>

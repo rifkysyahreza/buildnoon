@@ -15,6 +15,7 @@ import { SERVICES_LIST } from "@/constants/servicesList";
 import { Button } from "@/components/ui/button";
 import { useAppDispatch, useAppSelector } from "@/hooks/useSelector";
 import { setIsDescriptionDialogOpen } from "@/lib/features/ui/uiNavigationSlice";
+import Autoplay from "embla-carousel-autoplay";
 
 const ServicesListCarousel: FC = () => {
   const [selectedDescription, setSelectedDescription] = useState<string | null>(
@@ -50,7 +51,14 @@ const ServicesListCarousel: FC = () => {
 
   return (
     <div>
-      <Carousel className="w-full md:w-screen max-w-xs md:max-w-7xl">
+      <Carousel
+        className="w-full md:w-screen max-w-xs md:max-w-7xl"
+        plugins={[
+          Autoplay({
+            delay: 1000,
+          }),
+        ]}
+      >
         <CarouselContent>
           {SERVICES_LIST.map(({ title, image, description }, index) => (
             <CarouselItem key={index} className="md:basis-1/4">
